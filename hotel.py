@@ -62,7 +62,7 @@ class Hotel:
                 return "Foglalás sikeresen lemondva."
         return "Nincs ilyen foglalás."
 
-    def osszes_reservation_listazasa(self):
+    def osszes_reservation_lista(self):
         if not self.reservations:
             return "Nincsenek foglalások."
         return "\n".join(str(reservation) for reservation in self.reservations)
@@ -73,7 +73,7 @@ class Hotel:
                 return True
         return False
 
-def felhasznaloi_interfesz():
+def hotel():
     szalloda = Hotel("Példa Szálloda")
     szalloda.room_hozzaadas(OnebedRoom(101))
     szalloda.room_hozzaadas(TwobedRoom(102))
@@ -101,8 +101,8 @@ def felhasznaloi_interfesz():
         uzenet = szalloda.reservation_cancel(roomnumber, date)
         messagebox.showinfo("Lemondás", uzenet)
 
-    def listazas():
-        reservations = szalloda.osszes_reservation_listazasa()
+    def list():
+        reservations = szalloda.osszes_reservation_lista()
         messagebox.showinfo("Foglalások", reservations)
 
     root = tk.Tk()
@@ -124,8 +124,8 @@ def felhasznaloi_interfesz():
     cancel_btn = tk.Button(root, text="Lemondás", command=cancel)
     cancel_btn.pack(pady=5)
 
-    listazas_btn = tk.Button(root, text="Összes foglalás listázása", command=listazas)
-    listazas_btn.pack(pady=5)
+    list_btn = tk.Button(root, text="Összes foglalás listázása", command=list)
+    list_btn.pack(pady=5)
 
     room_lista = tk.Listbox(root, width=40)
     room_lista.pack(pady=20)
@@ -136,4 +136,4 @@ def felhasznaloi_interfesz():
     root.mainloop()
 
 if __name__ == "__main__":
-    felhasznaloi_interfesz()
+    hotel()
